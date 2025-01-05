@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:amquick_draft/need-doctor.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -165,104 +166,196 @@ class _WHospitalWidgetState extends State<WHospitalWidget> {
                       width: 1,
                     ),
                   ),
-                  child: Stack(
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Align(
-                            alignment: AlignmentDirectional(1, 0),
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(138, 0, 0, 0),
-                              child: Container(
-                                width: 200,
-                                height: 310,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey.shade50,
-                                  borderRadius: BorderRadius.circular(24),
-                                  shape: BoxShape.rectangle,
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(24),
-                                  child: Image.network(
-                                    'https://media.gettyimages.com/id/1312706504/photo/modern-hospital-building.jpg?s=612x612&w=0&k=20&c=DT6YDRZMH5G5dL-Qv6VwPpVDpIDxJqkAY4Gg0ojGi58=',
-                                    width: 200,
-                                    height: 200,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => NeedDoctorWidget()),
+    );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
-                        child: Row(
+                    ),
+                    child: Stack(
+                      children: [
+                        Row(
                           mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Container(
-                              width: 70,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade50,
-                                borderRadius: BorderRadius.circular(24),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.star_rate_rounded,
-                                    color: Color(0xFFEA8B18),
-                                    size: 24,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        5, 0, 0, 0),
-                                    child: Text(
-                                      '4.5',
-                                      style: TextStyle(
-                                        fontFamily: 'Inter',
-                                        fontSize: 14,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
+                            Expanded(
+                              child: Align(
+                                alignment: AlignmentDirectional(1, 0),
+                                child: Padding(
+                                  padding:
+                                      EdgeInsetsDirectional.fromSTEB(138, 0, 0, 0),
+                                  child: Container(
+                                    width: 200,
+                                    height: 310,
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey.shade50,
+                                      borderRadius: BorderRadius.circular(24),
+                                      shape: BoxShape.rectangle,
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(24),
+                                      child: Image.network(
+                                        'https://media.gettyimages.com/id/1312706504/photo/modern-hospital-building.jpg?s=612x612&w=0&k=20&c=DT6YDRZMH5G5dL-Qv6VwPpVDpIDxJqkAY4Gg0ojGi58=',
+                                        width: 200,
+                                        height: 200,
+                                        fit: BoxFit.fill,
                                       ),
                                     ),
                                   ),
-                                ],
+                                ),
                               ),
                             ),
-                            Container(
-                              width: 150,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color: Colors.grey.shade50,
-                                borderRadius: BorderRadius.circular(90),
+                          ],
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(15, 10, 15, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                width: 70,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade50,
+                                  borderRadius: BorderRadius.circular(24),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.star_rate_rounded,
+                                      color: Color(0xFFEA8B18),
+                                      size: 24,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5, 0, 0, 0),
+                                      child: Text(
+                                        '4.5',
+                                        style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontSize: 14,
+                                          color: Colors.black,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
+                              Container(
+                                width: 150,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade50,
+                                  borderRadius: BorderRadius.circular(90),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          2, 0, 0, 0),
+                                      child: Icon(
+                                        Icons.stars_rounded,
+                                        color: Colors.black,
+                                        size: 20,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5, 0, 0, 0),
+                                      child: Text(
+                                        'Highly\nRecommended',
+                                        style: TextStyle(
+                                          fontFamily: 'Readex Pro',
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                              child: Text(
+                                'City Hospital',
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  fontFamily: 'Ubuntu',
+                                  color: Color(0xFF00040C),
+                                  fontSize: 20,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(5, 12, 0, 0),
+                              child: Text(
+                                '\$2000-5000',
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        2, 0, 0, 0),
-                                    child: Icon(
-                                      Icons.stars_rounded,
-                                      color: Colors.black,
-                                      size: 20,
+                                        5, 10, 0, 0),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(0),
+                                      child: Image.asset(
+                                        'assets/images/144744-200-removebg-preview.png',
+                                        width: 25,
+                                        height: 25,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        5, 0, 0, 0),
+                                        5, 10, 0, 0),
                                     child: Text(
-                                      'Highly\nRecommended',
+                                      '5 KM',
                                       style: TextStyle(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: 15,
+                                        fontFamily: 'Inter',
+                                        fontSize: 16,
+                                        color: Colors.black,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                       ),
@@ -273,78 +366,8 @@ class _WHospitalWidgetState extends State<WHospitalWidget> {
                             ),
                           ],
                         ),
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                            child: Text(
-                              'City Hospital',
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontFamily: 'Ubuntu',
-                                color: Color(0xFF00040C),
-                                fontSize: 20,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(5, 12, 0, 0),
-                            child: Text(
-                              '\$2000-5000',
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontFamily: 'Inter',
-                                fontSize: 16,
-                                letterSpacing: 0.0,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      5, 10, 0, 0),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(0),
-                                    child: Image.asset(
-                                      'assets/images/144744-200-removebg-preview.png',
-                                      width: 25,
-                                      height: 25,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      5, 10, 0, 0),
-                                  child: Text(
-                                    '5 KM',
-                                    style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: 16,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -259,6 +259,7 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
                                                     style: TextStyle(
                                                       fontFamily: 'Inter',
                                                       letterSpacing: 0.0,
+                                                      color: Colors.black,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                     ),

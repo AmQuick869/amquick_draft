@@ -1,9 +1,7 @@
 import 'dart:ui';
+import 'package:amquick_draft/hospital.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
-import 'select_ambulance_model.dart';
 export 'select_ambulance_model.dart';
 
 T createModel<T>(BuildContext context, T Function() modelBuilder) {
@@ -157,38 +155,51 @@ class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
                           color: Colors.redAccent,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(24),
-                                child: Image.asset(
-                                  'assets/images/360_F_220578611_J7vb4nbxx7ZZkhVxDCSFHE1BslIgIavR-removebg-preview.png',
-                                  width: 200,
-                                  fit: BoxFit.contain,
-                                  alignment: Alignment(0, -1),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.redAccent,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          onPressed: () {  Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => WHospitalWidget()),
+    );},
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(24),
+                                  child: Image.asset(
+                                    'assets/images/360_F_220578611_J7vb4nbxx7ZZkhVxDCSFHE1BslIgIavR-removebg-preview.png',
+                                    width: 200,
+                                    fit: BoxFit.contain,
+                                    alignment: Alignment(0, -1),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                              child: Text(
-                                'Rapid Ambulance',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Ubuntu',
-                                  color: Color(0xD8080000),
-                                  fontSize: 18,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                                child: Text(
+                                  'Rapid Ambulance',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontFamily: 'Ubuntu',
+                                    color: Color(0xD8080000),
+                                    fontSize: 16,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       Padding(
@@ -200,40 +211,49 @@ class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
                             color: Colors.blue[100],
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    14, 3, 14, 0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(24),
-                                  child: Image.network(
-                                    'https://cdn-icons-png.freepik.com/512/4434/4434351.png',
-                                    width: 100,
-                                    height: 100,
-                                    fit: BoxFit.contain,
-                                    alignment: Alignment(0, -1),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue[100],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          onPressed: () {Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => WHospitalWidget()),
+    );  },
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      14, 3, 14, 0),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(24),
+                                    child: Image.network(
+                                      'https://cdn-icons-png.freepik.com/512/4434/4434351.png',
+                                      width: 100,
+                                      height: 100,
+                                      fit: BoxFit.contain,
+                                      alignment: Alignment(0, -1),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 18, 0, 0),
-                                child: Text(
+                                Text(
                                   'Normal Ambulance',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontFamily: 'Ubuntu',
                                     color: Color(0xD8080000),
-                                    fontSize: 18,
+                                    fontSize: 16,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -260,39 +280,48 @@ class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
                           color: Color(0xDEC1DE0D),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(24),
-                                child: Image.network(
-                                  'https://www.pngrepo.com/png/180127/180/ambulance-transport.png',
-                                  width: 100,
-                                  height: 100,
-                                  fit: BoxFit.contain,
-                                  alignment: Alignment(0, -1),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xDEC1DE0D),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          onPressed: () {  Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => WHospitalWidget()),
+    );},
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(24),
+                                  child: Image.network(
+                                    'https://www.pngrepo.com/png/180127/180/ambulance-transport.png',
+                                    width: 100,
+                                    height: 100,
+                                    fit: BoxFit.contain,
+                                    alignment: Alignment(0, -1),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                              child: Text(
+                              Text(
                                 'Transport Ambulance',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: 'Ubuntu',
                                   color: Color(0xD8080000),
-                                  fontSize: 18,
+                                  fontSize: 16,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       Padding(
@@ -301,43 +330,51 @@ class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
                           width: 130,
                           height: 180,
                           decoration: BoxDecoration(
-                            color: Color(0x6E10FB5D),
+                            color: Color.fromARGB(255, 126, 255, 169),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 3, 0, 0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(24),
-                                  child: Image.asset(
-                                    'assets/images/bike.png',
-                                    width: 200,
-                                    height: 115,
-                                    fit: BoxFit.contain,
-                                    alignment: Alignment(0, -1),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromARGB(255, 113, 255, 161),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          onPressed: () {  Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => WHospitalWidget()),
+    );},
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Padding(
+                                  padding:
+                                      EdgeInsetsDirectional.fromSTEB(0, 3, 0, 0),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(24),
+                                    child: Image.asset(
+                                      'assets/images/bike.png',
+                                      width: 200,
+                                      height: 115,
+                                      fit: BoxFit.contain,
+                                      alignment: Alignment(0, -1),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
-                                child: Text(
+                                Text(
                                   'Bike Ambulance',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontFamily: 'Ubuntu',
                                     color: Color(0xD8080000),
-                                    fontSize: 18,
+                                    fontSize: 16,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
