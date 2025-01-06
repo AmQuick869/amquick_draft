@@ -1,10 +1,8 @@
 import 'package:amquick_draft/hospital.dart';
 import 'package:amquick_draft/login.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'auth.dart';
-
-
-
 
 export 'select_ambulance_model.dart';
 
@@ -62,22 +60,51 @@ class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
         backgroundColor: Colors.white,
       ),
       drawer: Drawer(
-        
         child: Container(
           decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [const Color.fromARGB(255, 249, 255, 218), const Color.fromARGB(255, 182, 225, 255)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-      ),
+            gradient: LinearGradient(
+              colors: [
+                const Color.fromARGB(255, 249, 255, 218),
+                const Color.fromARGB(255, 182, 225, 255)
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
           child: ListView(
             padding: EdgeInsets.only(top: 50),
             children: <Widget>[
-              
+              DrawerHeader(
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 10),
+                      child: Text(
+                        'Menu',
+                        style: TextStyle(
+                          color: const Color.fromARGB(255, 0, 0, 0),
+                          fontSize: 24,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 10, top: 30),
+                      child: Text(
+                        "Welcome, ${_auth.currentUser!.email}",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                    )
+                  ],
+                ),
+              ),
               Container(
                 margin: EdgeInsets.all(20),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white, border: Border.all(color: const Color.fromARGB(255, 188, 188, 188))),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                    border: Border.all(
+                        color: const Color.fromARGB(255, 188, 188, 188))),
                 child: ListTile(
                   title: Text('Item 1'),
                   onTap: () {
@@ -87,7 +114,11 @@ class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
               ),
               Container(
                 margin: EdgeInsets.all(20),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white, border: Border.all(color: const Color.fromARGB(255, 188, 188, 188))),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                    border: Border.all(
+                        color: const Color.fromARGB(255, 188, 188, 188))),
                 child: ListTile(
                   title: Text('Book Consultation with Doctor'),
                   onTap: () {
@@ -97,17 +128,22 @@ class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
               ),
               Container(
                 margin: EdgeInsets.all(20),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white, border: Border.all(color: const Color.fromARGB(255, 188, 188, 188))),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                    border: Border.all(
+                        color: const Color.fromARGB(255, 188, 188, 188))),
                 child: ListTile(
                   title: Text('Log Out'),
                   onTap: () async {
                     await _auth.signOut();
-                    
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    prefs.setBool('isLoggedIn', false);
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => LoginPage()),
                     );
-                    
                   },
                 ),
               ),
@@ -120,7 +156,6 @@ class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
               child: Container(
@@ -358,8 +393,7 @@ class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
                         ),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                Color.fromARGB(255, 113, 255, 161),
+                            backgroundColor: Color.fromARGB(255, 113, 255, 161),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -376,8 +410,8 @@ class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0, 3, 0, 0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 3, 0, 0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(24),
                                   child: Image.asset(
