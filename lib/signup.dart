@@ -1,11 +1,20 @@
 import 'package:amquick_draft/login.dart';
 import 'package:flutter/material.dart';
-
-class SignUpPage extends StatelessWidget {
+import 'auth.dart';
+class SignUpPage extends StatefulWidget {
+  
   const SignUpPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+  class _SignUpPageState extends State<SignUpPage> {
+    final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final Auth _auth = Auth();
+    @override
+    Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -65,6 +74,7 @@ class SignUpPage extends StatelessWidget {
                       ),
                       SizedBox(height: 24.0),
                       TextField(
+                        controller: emailController,
                         decoration: InputDecoration(
                           labelText: 'Email',
                           border: OutlineInputBorder(
@@ -74,6 +84,7 @@ class SignUpPage extends StatelessWidget {
                       ),
                       SizedBox(height: 16.0),
                       TextField(
+                        controller: passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
                           labelText: 'Password',
@@ -87,8 +98,20 @@ class SignUpPage extends StatelessWidget {
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {
-                            // Handle sign-up logic here
+                          onPressed: () async{
+                           try {
+    await _auth.createUserWithEmailAndPassword(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+    );
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LoginPage()),
+    );
+  } catch (e) {
+    // Show an error message
+    print('Error: $e');
+  }
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xFF1A73E8),

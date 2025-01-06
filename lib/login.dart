@@ -1,6 +1,7 @@
 import 'package:amquick_draft/select_amb.dart';
 import 'package:amquick_draft/signup.dart';
 import 'package:flutter/material.dart';
+import 'auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -8,9 +9,12 @@ class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
+
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
+  final Auth _auth = Auth();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,14 +32,14 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                    'AmQuick',
-                    style: TextStyle(
-                      fontSize: 28.0,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Roboto',
-                    ),
+                  'AmQuick',
+                  style: TextStyle(
+                    fontSize: 28.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Roboto',
                   ),
-                  const SizedBox(height: 50),
+                ),
+                const SizedBox(height: 50),
                 Container(
                   padding: EdgeInsets.all(24.0),
                   margin: EdgeInsets.symmetric(horizontal: 24.0),
@@ -54,7 +58,6 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                          
                       Text(
                         'Welcome Back',
                         style: TextStyle(
@@ -73,6 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       SizedBox(height: 24.0),
                       TextField(
+                        controller: emailController,
                         decoration: InputDecoration(
                           labelText: 'Email',
                           border: OutlineInputBorder(
@@ -83,33 +87,48 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(height: 16.0),
                       TextField(
                         controller: _passwordController,
-              obscureText: !_isPasswordVisible,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(
+                        obscureText: !_isPasswordVisible,
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _isPasswordVisible = !_isPasswordVisible;
-                    });
-                  },
-                ),
-              ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _isPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isPasswordVisible = !_isPasswordVisible;
+                              });
+                            },
+                          ),
+                        ),
                       ),
                       SizedBox(height: 24.0),
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => SelectAmbulanceWidget()),
-    );
+                          onPressed: () async {
+                            try {
+                              await _auth.signInWithEmailAndPassword(
+                                email: emailController.text.trim(),
+                                password: _passwordController.text.trim(),
+                              );
+                              Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      SelectAmbulanceWidget()),
+                            );
+                            } catch (e) {
+                              // Show an error message
+                              print('Error: $e');
+                            }
+
+                            
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Color(0xFF1A73E8),
@@ -122,13 +141,17 @@ class _LoginPageState extends State<LoginPage> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          child: Text('Sign In', style: TextStyle(color: Colors.white),),
+                          child: Text(
+                            'Sign In',
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                       ),
                       SizedBox(height: 16.0),
                       Text(
                         'Or sign in with',
-                        style: TextStyle(fontSize: 14.0, color: Colors.grey[600]),
+                        style:
+                            TextStyle(fontSize: 14.0, color: Colors.grey[600]),
                       ),
                       SizedBox(height: 16.0),
                       Column(
@@ -139,7 +162,8 @@ class _LoginPageState extends State<LoginPage> {
                               // Handle Google sign-in logic here
                             },
                             style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.black, backgroundColor: Colors.white,
+                              foregroundColor: Colors.black,
+                              backgroundColor: Colors.white,
                               side: BorderSide(color: Colors.grey[300]!),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12.0),
@@ -153,7 +177,8 @@ class _LoginPageState extends State<LoginPage> {
                               // Handle Apple sign-in logic here
                             },
                             style: ElevatedButton.styleFrom(
-                              foregroundColor: Colors.black, backgroundColor: Colors.white,
+                              foregroundColor: Colors.black,
+                              backgroundColor: Colors.white,
                               side: BorderSide(color: Colors.grey[300]!),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12.0),
@@ -167,18 +192,19 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(height: 16.0),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.black, backgroundColor: Colors.white,
+                          foregroundColor: Colors.black,
+                          backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           elevation: 0.0,
                         ),
-                        onPressed: ()async {
+                        onPressed: () async {
                           Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => SignUpPage()),
-    );
-   
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignUpPage()),
+                          );
                         },
                         child: RichText(
                           text: TextSpan(

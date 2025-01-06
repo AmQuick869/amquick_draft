@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "641912171529",
+    "project_id": "amquick-67955",
+    "storage_bucket": "amquick-67955.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641912171529:android:a9335dd0fa2c28a36a9cd8",
+        "android_client_info": {
+          "package_name": "com.example.amquick_draft"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi4LR1WpxzuFZqXFUaMvUU_PzUWW6uH9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

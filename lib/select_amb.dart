@@ -1,6 +1,9 @@
 import 'package:amquick_draft/hospital.dart';
 import 'package:amquick_draft/login.dart';
 import 'package:flutter/material.dart';
+import 'auth.dart';
+
+
 
 
 export 'select_ambulance_model.dart';
@@ -24,6 +27,7 @@ class SelectAmbulanceWidget extends StatefulWidget {
 
 class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
   late SelectAmbulanceModel _model;
+  final Auth _auth = Auth();
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -58,39 +62,57 @@ class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
         backgroundColor: Colors.white,
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 183, 223, 255),
+        
+        child: Container(
+          decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [const Color.fromARGB(255, 249, 255, 218), const Color.fromARGB(255, 182, 225, 255)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+          child: ListView(
+            padding: EdgeInsets.only(top: 50),
+            children: <Widget>[
+              
+              Container(
+                margin: EdgeInsets.all(20),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white, border: Border.all(color: const Color.fromARGB(255, 188, 188, 188))),
+                child: ListTile(
+                  title: Text('Item 1'),
+                  onTap: () {
+                    // Handle the tap
+                  },
+                ),
               ),
-              child: Text('Menu', style: TextStyle(fontSize: 18),),
-            ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                // Handle the tap
-              },
-            ),
-            ListTile(
-              title: Text('Book Consultation with Doctor'),
-              onTap: () {
-                // Handle the tap
-              },
-            ),
-            ListTile(
-              title: Text('Log Out'),
-              onTap: () async {
-                
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
-                );
-                
-              },
-            ),
-          ],
+              Container(
+                margin: EdgeInsets.all(20),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white, border: Border.all(color: const Color.fromARGB(255, 188, 188, 188))),
+                child: ListTile(
+                  title: Text('Book Consultation with Doctor'),
+                  onTap: () {
+                    // Handle the tap
+                  },
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(20),
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Colors.white, border: Border.all(color: const Color.fromARGB(255, 188, 188, 188))),
+                child: ListTile(
+                  title: Text('Log Out'),
+                  onTap: () async {
+                    await _auth.signOut();
+                    
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
+                    
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       body: SafeArea(
@@ -230,8 +252,8 @@ class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
                                     14, 3, 14, 0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(24),
-                                  child: Image.network(
-                                    'https://cdn-icons-png.freepik.com/512/4434/4434351.png',
+                                  child: Image.asset(
+                                    'assets/images/4434351.png',
                                     width: 100,
                                     height: 100,
                                     fit: BoxFit.contain,
@@ -301,8 +323,8 @@ class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(24),
-                                child: Image.network(
-                                  'https://www.pngrepo.com/png/180127/180/ambulance-transport.png',
+                                child: Image.asset(
+                                  'assets/images/ambulance-transport.png',
                                   width: 100,
                                   height: 100,
                                   fit: BoxFit.contain,
