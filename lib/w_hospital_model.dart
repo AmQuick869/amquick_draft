@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class WHospitalModel {
   // Define any properties related to the hospital data

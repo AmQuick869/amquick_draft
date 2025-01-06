@@ -1,11 +1,5 @@
-import 'dart:ui';
-import 'package:amquick_draft/need-doctor.dart';
+import 'package:amquick_draft/need_doctor.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-
-import 'w_hospital_model.dart';
-export 'w_hospital_model.dart';
 
 T createModel<T>(BuildContext context, T Function() modelBuilder) {
   return modelBuilder();

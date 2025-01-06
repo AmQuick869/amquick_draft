@@ -1,8 +1,16 @@
-import 'package:amquick_draft/select-amb.dart';
+import 'package:amquick_draft/select_amb.dart';
 import 'package:amquick_draft/signup.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _passwordController = TextEditingController();
+  bool _isPasswordVisible = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,14 +82,24 @@ class LoginPage extends StatelessWidget {
                       ),
                       SizedBox(height: 16.0),
                       TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          labelText: 'Password',
-                          border: OutlineInputBorder(
+                        controller: _passwordController,
+              obscureText: !_isPasswordVisible,
+              decoration: InputDecoration(
+                labelText: 'Password',
+                border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          suffixIcon: Icon(Icons.visibility_off),
-                        ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isPasswordVisible = !_isPasswordVisible;
+                    });
+                  },
+                ),
+              ),
                       ),
                       SizedBox(height: 24.0),
                       SizedBox(
@@ -155,11 +173,12 @@ class LoginPage extends StatelessWidget {
                           ),
                           elevation: 0.0,
                         ),
-                        onPressed: () {
+                        onPressed: ()async {
                           Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => SignUpPage()),
     );
+   
                         },
                         child: RichText(
                           text: TextSpan(
