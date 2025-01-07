@@ -4,17 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'auth.dart';
 
-export 'select_ambulance_model.dart';
 
-T createModel<T>(BuildContext context, T Function() modelBuilder) {
-  return modelBuilder();
-}
-
-class SelectAmbulanceModel {
-  void dispose() {
-    // Dispose any resources, such as controllers or streams, here.
-  }
-}
 
 class SelectAmbulanceWidget extends StatefulWidget {
   const SelectAmbulanceWidget({super.key});
@@ -24,31 +14,14 @@ class SelectAmbulanceWidget extends StatefulWidget {
 }
 
 class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
-  late SelectAmbulanceModel _model;
+  
   final Auth _auth = Auth();
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  @override
-  void initState() {
-    super.initState();
-    _model = createModel(context, () => SelectAmbulanceModel());
+  
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        setState(() {
-          // Update your widget state here if necessary
-        });
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _model.dispose();
-
-    super.dispose();
-  }
+  
 
   @override
   Widget build(BuildContext context) {
