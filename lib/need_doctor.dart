@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'need_doctor_model.dart';
 export 'need_doctor_model.dart';
@@ -19,24 +20,18 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  // Define a constant image URL for all doctors
+  final String defaultImageUrl = 'https://img.freepik.com/premium-photo/doctor-having-good-news-his-patient_13339-193678.jpg?semt=ais_hybrid';
+
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => NeedDoctorModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        setState(() {
-          // Update your widget state here if necessary
-        });
-      }
-    });
   }
 
   @override
   void dispose() {
     _model.dispose();
-
     super.dispose();
   }
 
@@ -53,87 +48,99 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
         body: SafeArea(
           top: true,
           child: SingleChildScrollView(
-              child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Container(
-                width: double.infinity,
-                height: 55,
-                decoration: BoxDecoration(
-                  color: Colors.grey[50],
-                ),
-                alignment: AlignmentDirectional(-1, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
-                        child: Text(
-                          'AmQuick',
-                          style: TextStyle(
-                            fontFamily: 'Readex Pro',
-                            fontSize: 23,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w600,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[50],
+                  ),
+                  alignment: AlignmentDirectional(-1, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
+                          child: Text(
+                            'AmQuick',
+                            style: TextStyle(
+                              fontFamily: 'Readex Pro',
+                              fontSize: 23,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
-                      child: Container(
-                        width: 30,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          color: Color(0x2F000000),
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                        child: Icon(
-                          Icons.search_outlined,
-                          color: Colors.black,
-                          size: 17,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
-                      child: Container(
-                        width: 30,
-                        height: 30,
-                        decoration: BoxDecoration(
-                          color: Color(0x2F000000),
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                        child: Icon(
-                          Icons.notifications_none,
-                          color: Colors.black,
-                          size: 18,
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
+                        child: Container(
+                          width: 30,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Color(0x2F000000),
+                            borderRadius: BorderRadius.circular(24),
+                          ),
+                          child: Icon(
+                            Icons.search_outlined,
+                            color: Colors.black,
+                            size: 17,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+                        child: Container(
+                          width: 30,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: Color(0x2F000000),
+                            borderRadius: BorderRadius.circular(24),
+                          ),
+                          child: Icon(
+                            Icons.notifications_none,
+                            color: Colors.black,
+                            size: 18,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                width: double.infinity,
-                height: MediaQuery.sizeOf(context).height,
-                decoration: BoxDecoration(
-                  color: Colors.grey[50],
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
-                      child: ListView(
+                Container(
+                  width: double.infinity,
+                  height: MediaQuery.sizeOf(context).height,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[50],
+                  ),
+                  child: StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('doctors')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      final doctors = snapshot.data!.docs;
+
+                      return ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(25, 5, 25, 5),
+                        itemCount: doctors.length,
+                        itemBuilder: (context, index) {
+                          final doctor = doctors[index];
+                          final doctorName = doctor['name'];
+                          final specialization = doctor['specialization'];
+                          final rating = doctor['rating'];
+                          final price = doctor['price'];
+
+                          return Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(25, 5, 25, 5),
                             child: Container(
                               width: 100,
                               height: 270,
@@ -163,10 +170,10 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(24),
                                     child: Image.network(
-                                      'https://img.freepik.com/premium-photo/doctor-having-good-news-his-patient_13339-193678.jpg?semt=ais_hybrid',
+                                      defaultImageUrl,  // Use the constant image URL
                                       width: double.infinity,
                                       height: double.infinity,
-                                      fit: BoxFit.fitHeight,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                   SizedBox(
@@ -175,9 +182,8 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
                                     child: Stack(
                                       children: [
                                         Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  15, 10, 15, 0),
+                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                              15, 10, 15, 0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
@@ -192,8 +198,7 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
                                                       BorderRadius.circular(24),
                                                 ),
                                                 child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
+                                                  mainAxisSize: MainAxisSize.max,
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
                                                   children: [
@@ -203,12 +208,10 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
                                                       size: 24,
                                                     ),
                                                     Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  5, 0, 0, 0),
+                                                      padding: EdgeInsetsDirectional
+                                                          .fromSTEB(5, 0, 0, 0),
                                                       child: Text(
-                                                        '4.5',
+                                                        rating.toString(),
                                                         style: TextStyle(
                                                           fontFamily: 'Inter',
                                                           fontSize: 14,
@@ -225,11 +228,10 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
                                           ),
                                         ),
                                         Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  10, 70, 0, 0),
+                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                              10, 70, 0, 0),
                                           child: Text(
-                                            'Dr. John Sans',
+                                            doctorName,
                                             style: TextStyle(
                                               fontFamily: 'Ubuntu',
                                               fontSize: 25,
@@ -239,25 +241,22 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
                                           ),
                                         ),
                                         Align(
-                                          alignment:
-                                              AlignmentDirectional(-1, 0),
+                                          alignment: AlignmentDirectional(-1, 0),
                                           child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10, 30, 0, 0),
+                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                10, 30, 0, 0),
                                             child: RichText(
                                               textScaler: MediaQuery.of(context)
                                                   .textScaler,
                                               text: TextSpan(
                                                 children: [
                                                   TextSpan(
-                                                    text: '\$ 2/min',
+                                                    text: '\$ $price/min',
                                                     style: TextStyle(
                                                       fontFamily: 'Inter',
                                                       letterSpacing: 0.0,
                                                       color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                      fontWeight: FontWeight.bold,
                                                     ),
                                                   )
                                                 ],
@@ -277,7 +276,7 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10, 105, 0, 0),
                                     child: Text(
-                                      'Neurologist',
+                                      specialization,
                                       style: TextStyle(
                                         fontFamily: 'Readex Pro',
                                         fontSize: 16,
@@ -289,15 +288,15 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
                                 ],
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                          );
+                        },
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
-          )),
+              ],
+            ),
+          ),
         ),
       ),
     );
