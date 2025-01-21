@@ -1,3 +1,4 @@
+import 'package:amquick_draft/payment.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -165,127 +166,143 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
                                   width: 1,
                                 ),
                               ),
-                              child: Stack(
-                                children: [
-                                  ClipRRect(
+                              child: ElevatedButton(
+                                onPressed: (){
+                                   Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => Checkout7Widget()),
+                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.transparent,
+                                  padding: EdgeInsets.zero,
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(24),
-                                    child: Image.network(
-                                      defaultImageUrl,  // Use the constant image URL
-                                      width: double.infinity,
-                                      height: double.infinity,
-                                      fit: BoxFit.cover,
-                                    ),
                                   ),
-                                  SizedBox(
-                                    width: double.infinity,
-                                    height: double.infinity,
-                                    child: Stack(
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                              15, 10, 15, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Container(
-                                                width: 70,
-                                                height: 40,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.grey[50],
-                                                  borderRadius:
-                                                      BorderRadius.circular(24),
-                                                ),
-                                                child: Row(
-                                                  mainAxisSize: MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Icon(
-                                                      Icons.star_rate_rounded,
-                                                      color: Color(0xFFEA8B18),
-                                                      size: 24,
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsetsDirectional
-                                                          .fromSTEB(5, 0, 0, 0),
-                                                      child: Text(
-                                                        rating.toString(),
-                                                        style: TextStyle(
-                                                          fontFamily: 'Inter',
-                                                          fontSize: 14,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                              10, 70, 0, 0),
-                                          child: Text(
-                                            doctorName,
-                                            style: TextStyle(
-                                              fontFamily: 'Ubuntu',
-                                              fontSize: 25,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment: AlignmentDirectional(-1, 0),
-                                          child: Padding(
-                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                10, 30, 0, 0),
-                                            child: RichText(
-                                              textScaler: MediaQuery.of(context)
-                                                  .textScaler,
-                                              text: TextSpan(
-                                                children: [
-                                                  TextSpan(
-                                                    text: '\$ $price/min',
-                                                    style: TextStyle(
-                                                      fontFamily: 'Inter',
-                                                      letterSpacing: 0.0,
-                                                      color: Colors.black,
-                                                      fontWeight: FontWeight.bold,
-                                                    ),
-                                                  )
-                                                ],
-                                                style: TextStyle(
-                                                  fontFamily: 'Inter',
-                                                  fontSize: 12,
-                                                  letterSpacing: 0.0,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        10, 105, 0, 0),
-                                    child: Text(
-                                      specialization,
-                                      style: TextStyle(
-                                        fontFamily: 'Readex Pro',
-                                        fontSize: 16,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
+                                ),
+                                child: Stack(
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(24),
+                                      child: Image.network(
+                                        defaultImageUrl,  // Use the constant image URL
+                                        width: double.infinity,
+                                        height: double.infinity,
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      child: Stack(
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                15, 10, 15, 0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Container(
+                                                  width: 70,
+                                                  height: 40,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.grey[50],
+                                                    borderRadius:
+                                                        BorderRadius.circular(24),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisSize: MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.center,
+                                                    children: [
+                                                      Icon(
+                                                        Icons.star_rate_rounded,
+                                                        color: Color(0xFFEA8B18),
+                                                        size: 24,
+                                                      ),
+                                                      Padding(
+                                                        padding: EdgeInsetsDirectional
+                                                            .fromSTEB(5, 0, 0, 0),
+                                                        child: Text(
+                                                          rating.toString(),
+                                                          style: TextStyle(
+                                                            fontFamily: 'Inter',
+                                                            fontSize: 14,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                10, 70, 0, 0),
+                                            child: Text(
+                                              doctorName,
+                                              style: TextStyle(
+                                                fontFamily: 'Ubuntu',
+                                                fontSize: 25,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                          Align(
+                                            alignment: AlignmentDirectional(-1, 0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional.fromSTEB(
+                                                  10, 30, 0, 0),
+                                              child: RichText(
+                                                textScaler: MediaQuery.of(context)
+                                                    .textScaler,
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: '\$ $price/min',
+                                                      style: TextStyle(
+                                                        fontFamily: 'Inter',
+                                                        letterSpacing: 0.0,
+                                                        color: Colors.black,
+                                                        fontWeight: FontWeight.bold,
+                                                      ),
+                                                    )
+                                                  ],
+                                                  style: TextStyle(
+                                                    fontFamily: 'Inter',
+                                                    fontSize: 12,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          10, 105, 0, 0),
+                                      child: Text(
+                                        specialization,
+                                        style: TextStyle(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 16,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           );

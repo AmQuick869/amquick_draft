@@ -145,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setBool('isLoggedIn', true);
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>

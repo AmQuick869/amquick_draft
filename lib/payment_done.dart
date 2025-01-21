@@ -1,4 +1,5 @@
 import 'package:amquick_draft/select_amb.dart';
+import 'package:amquick_draft/video_call.dart';
 import 'package:flutter/material.dart';
 
 class PaymentWidget extends StatefulWidget {
@@ -34,7 +35,10 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                       size: 25,
                     ),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SelectAmbulanceWidget()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SelectAmbulanceWidget()));
                     },
                     iconSize: 44,
                     padding: const EdgeInsets.all(10),
@@ -116,7 +120,8 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                         child: Image.asset(
                           'assets/images/masterCard@2x.png',
                           width: 40,
@@ -125,14 +130,16 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: const [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
                               child: Text(
                                 'Mastercard Ending in 4021',
                                 style: TextStyle(
@@ -143,7 +150,8 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
                               child: Text(
                                 '\$425.24',
                                 style: TextStyle(
@@ -170,10 +178,14 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const SelectAmbulanceWidget()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const VideoCallWidget()));
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFE0E3E7),
+                        backgroundColor:
+                            const Color.fromARGB(255, 125, 73, 222),
                         fixedSize: const Size(230, 50),
                         padding: EdgeInsets.zero,
                         shape: RoundedRectangleBorder(
@@ -181,10 +193,10 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                         ),
                       ),
                       child: const Text(
-                        'Go Home',
+                        'Make the Video Call',
                         style: TextStyle(
                           fontFamily: 'Roboto',
-                          color: Colors.black,
+                          color: Color.fromARGB(255, 255, 255, 255),
                           fontSize: 16,
                         ),
                       ),

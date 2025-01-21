@@ -1,6 +1,5 @@
-
+import 'package:amquick_draft/payment_done.dart';
 import 'package:flutter/material.dart';
-
 
 class Checkout7Widget extends StatefulWidget {
   const Checkout7Widget({super.key});
@@ -36,7 +35,8 @@ class _Checkout7WidgetState extends State<Checkout7Widget> {
                     child: Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                           child: IconButton(
                             icon: const Icon(
                               Icons.arrow_back_rounded,
@@ -91,7 +91,8 @@ class _Checkout7WidgetState extends State<Checkout7Widget> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                       child: ListView(
                         padding: EdgeInsets.zero,
                         primary: false,
@@ -191,28 +192,37 @@ class _Checkout7WidgetState extends State<Checkout7Widget> {
                         ],
                       ),
                     ),
+                    const SizedBox(
+                      height: 200,
+                    ),
+                    Container(
+                      width: 200,
+                      height: 70,
+                      decoration: BoxDecoration(
+                        color: Color(0xFF4B39EF),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      alignment: AlignmentDirectional.center,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PaymentWidget()),
+                          );
+                        },
+                        child: const Text(
+                          'Pay (\$225.50)',
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
-                ),
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              height: 100,
-              decoration: const BoxDecoration(
-                color: Color(0xFF4B39EF),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(16),
-                  topRight: Radius.circular(16),
-                ),
-              ),
-              alignment: AlignmentDirectional.center,
-              child: const Text(
-                'Pay (\$225.50)',
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -255,7 +265,7 @@ class _Checkout7WidgetState extends State<Checkout7Widget> {
                       child: Text(
                         title,
                         style: const TextStyle(
-                           fontFamily: 'Arial',
+                          fontFamily: 'Arial',
                           color: Color(0xFF14181B),
                           fontSize: 18,
                           fontWeight: FontWeight.bold,

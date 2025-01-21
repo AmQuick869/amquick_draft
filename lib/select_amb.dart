@@ -1,10 +1,9 @@
 import 'package:amquick_draft/hospital.dart';
 import 'package:amquick_draft/login.dart';
+import 'package:amquick_draft/need_doctor.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'auth.dart';
-
-
 
 class SelectAmbulanceWidget extends StatefulWidget {
   const SelectAmbulanceWidget({super.key});
@@ -14,14 +13,9 @@ class SelectAmbulanceWidget extends StatefulWidget {
 }
 
 class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
-  
   final Auth _auth = Auth();
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +89,8 @@ class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
                 child: ListTile(
                   title: Text('Book Consultation with Doctor'),
                   onTap: () {
-                    // Handle the tap
+                    Navigator.pushReplacement(
+                        context, MaterialPageRoute(builder: (context)=>NeedDoctorWidget()));
                   },
                 ),
               ),
@@ -113,7 +108,7 @@ class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
                     SharedPreferences prefs =
                         await SharedPreferences.getInstance();
                     prefs.setBool('isLoggedIn', false);
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => LoginPage()),
                     );

@@ -1,3 +1,4 @@
+import 'package:amquick_draft/option.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'need_doctor.dart';
@@ -109,9 +110,11 @@ class _WHospitalWidgetState extends State<WHospitalWidget> {
                         itemBuilder: (context, index) {
                           final hospitalData =
                               hospitals[index].data() as Map<String, dynamic>;
-                          final name = hospitalData['name'] ?? 'Unknown Hospital';
-                          final location =
+                          final name =
+                              hospitalData['name'] ?? 'Unknown Hospital';
+                          final GeoPoint loc =
                               hospitalData['location'] ?? 'Unknown Location';
+                          final location = '${loc.latitude},${loc.longitude}';
                           final priceRange =
                               hospitalData['priceRange'] ?? 'Unknown Price';
                           final distance =
@@ -138,7 +141,7 @@ class _WHospitalWidgetState extends State<WHospitalWidget> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => NeedDoctorWidget(),
+                                      builder: (context) => Option(),
                                     ),
                                   );
                                 },
@@ -156,8 +159,9 @@ class _WHospitalWidgetState extends State<WHospitalWidget> {
                                       children: [
                                         Expanded(
                                           child: Padding(
-                                            padding: EdgeInsetsDirectional
-                                                .fromSTEB(15, 10, 15, 10),
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    15, 10, 15, 10),
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
@@ -173,7 +177,7 @@ class _WHospitalWidgetState extends State<WHospitalWidget> {
                                                   ),
                                                 ),
                                                 // Hospital Location
-                                                Text(
+                                                /*Text(
                                                   location,
                                                   style: TextStyle(
                                                     fontFamily: 'Inter',
@@ -181,7 +185,7 @@ class _WHospitalWidgetState extends State<WHospitalWidget> {
                                                     color: Colors.white,
                                                     fontWeight: FontWeight.w600,
                                                   ),
-                                                ),
+                                                ),*/
                                                 // Price Range
                                                 Padding(
                                                   padding:
@@ -230,8 +234,9 @@ class _WHospitalWidgetState extends State<WHospitalWidget> {
                                         ),
                                         // Image Section
                                         Padding(
-                                          padding: EdgeInsetsDirectional
-                                              .fromSTEB(0, 10, 15, 10),
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 10, 15, 10),
                                           child: Container(
                                             width: 100,
                                             height: 100,
