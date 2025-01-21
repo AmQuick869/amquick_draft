@@ -2,6 +2,7 @@ import 'package:amquick_draft/option.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'need_doctor.dart';
+import 'hospital_service.dart';
 
 class WHospitalWidget extends StatefulWidget {
   const WHospitalWidget({super.key});
@@ -14,6 +15,23 @@ class _WHospitalWidgetState extends State<WHospitalWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final CollectionReference hospitalsCollection =
       FirebaseFirestore.instance.collection('hospitals');
+  final HospitalService _hospitalService = HospitalService();
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeHospitals();
+  }
+
+  // Initialize hospitals by fetching and updating them
+  Future<void> _initializeHospitals() async {
+    try {
+      // Fetch and update hospitals
+      await _hospitalService.fetchAndUpdateHospitals();
+    } catch (e) {
+      print("Error during hospital initialization: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -176,16 +194,6 @@ class _WHospitalWidgetState extends State<WHospitalWidget> {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                                // Hospital Location
-                                                /*Text(
-                                                  location,
-                                                  style: TextStyle(
-                                                    fontFamily: 'Inter',
-                                                    fontSize: 16,
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),*/
                                                 // Price Range
                                                 Padding(
                                                   padding:
