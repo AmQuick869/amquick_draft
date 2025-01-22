@@ -18,6 +18,8 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
 
   String insights = "";
 
+  bool _isLoading = false;
+
   Future<void> uploadFile() async {
     try {
       // Pick file
@@ -31,7 +33,11 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
       File file = File(result.files.single.path!);
       print('File selected: ${file.path}');
 
-      // Create request
+      _isLoading = true;
+      setState(() {
+
+      });
+
       var request = http.MultipartRequest(
         'POST',
         Uri.parse('https://fastapirender-6.onrender.com/generate-report/'),
@@ -52,7 +58,11 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
         final data = jsonDecode(responseBody);
         insights = data["insights"];
 
-        setState(() {});
+        _isLoading = false;
+        
+        setState(() {
+
+        });
       } else {
         print('Error: ${response.reasonPhrase}');
       }
@@ -60,25 +70,11 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
       print('Exception: $e');
     }
   }
-
-  Future<void> _pickPdf() async {
-    final result = await FilePicker.platform
-        .pickFiles(type: FileType.custom, allowedExtensions: ['pdf']);
-
-    if (result != null && result.files.single.path != null) {
-      setState(() {
-        _selectedPdf = File(result.files.single.path!);
-      });
-      print('PDF file selected: ${_selectedPdf!.path}');
-    } else {
-      print('No PDF file selected.');
-    }
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
+      body: _isLoading ? Center(child: CircularProgressIndicator(color: Colors.teal,),) : Padding(
         padding: const EdgeInsets.all(16.0),
         child: SafeArea(
           top: true,
@@ -117,13 +113,7 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
               ElevatedButton(
                 onPressed: () async {
                   print('Button pressed, picking PDF...');
-                  await _pickPdf();
-                  if (_selectedPdf != null) {
-                    print('Selected PDF: ${_selectedPdf!.path}');
                     await uploadFile();
-                  } else {
-                    print('No PDF selected, cannot upload.');
-                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.teal,
@@ -134,25 +124,14 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
                 ),
               ),
               SizedBox(height: 20),
-              if (_selectedPdf != null)
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Selected File:',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 8),
-                    Text(
-                      _selectedPdf!.path.split('/').last,
-                      style: TextStyle(fontSize: 14, color: Colors.grey[700]),
-                    ),
                     SizedBox(height: 20),
                     Text(
                       'Insights:',
                       style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 8),
                     Container(
@@ -164,26 +143,19 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: SingleChildScrollView(
-                        child: Column(children: [
-                          Text(
-                            insights == ""
-                                ? 'Insights will be displayed here after processing the report.'
-                                : insights,
+                        child: Column(
+                          children: [Text(
+                            insights == "" ?
+                            'Insights will be displayed here after processing the report.' : insights,
                             style: TextStyle(
                                 fontSize: 14,
                                 color: const Color.fromARGB(255, 52, 52, 52)),
-                          ),
-                        ]),
+                          ),]
+                        ),
                       ),
                     ),
                   ],
                 )
-              else
-                Text(
-                  'No file selected. Please upload a PDF report to view insights.',
-                  style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-                  textAlign: TextAlign.center,
-                ),
             ],
           ),
         ),
