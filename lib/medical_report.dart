@@ -30,7 +30,7 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
       // Create request
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('https://fastapirender-5.onrender.com/generate-report'),
+        Uri.parse('https://fastapirender-6.onrender.com/generate-report/'),
       );
       print('Request created.');
 
@@ -44,15 +44,8 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
 
       if (response.statusCode == 200) {
         // Get the response as bytes
-        var bytes = await response.stream.toBytes();
-        print('Response received. Saving PDF...');
-
-        // Save the PDF file
-        final directory = await getApplicationDocumentsDirectory();
-        File pdfFile = File('${directory.path}/Patient_Advice.pdf');
-        await pdfFile.writeAsBytes(bytes);
-
-        print('PDF saved at: ${pdfFile.path}');
+        var responseBody = await response.stream.bytesToString();
+        print(responseBody);
       } else {
         print('Error: ${response.reasonPhrase}');
       }
