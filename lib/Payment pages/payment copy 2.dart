@@ -1,14 +1,14 @@
-import 'package:amquick_draft/payment_done.dart';
+import 'package:amquick_draft/Payment%20pages/payment_done.dart';
 import 'package:flutter/material.dart';
 
-class Checkout7Widget extends StatefulWidget {
-  const Checkout7Widget({super.key});
+class Checkout7WidgetCopyCopy extends StatefulWidget {
+  const Checkout7WidgetCopyCopy({super.key});
 
   @override
-  State<Checkout7Widget> createState() => _Checkout7WidgetState();
+  State<Checkout7WidgetCopyCopy> createState() => _Checkout7WidgetCopyState();
 }
 
-class _Checkout7WidgetState extends State<Checkout7Widget> {
+class _Checkout7WidgetCopyState extends State<Checkout7WidgetCopyCopy> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -98,8 +98,7 @@ class _Checkout7WidgetState extends State<Checkout7Widget> {
                         primary: false,
                         shrinkWrap: true,
                         children: [
-                          _buildServiceCard('Rapid Ambulance', '\$100'),
-                          _buildServiceCard('Doctor Appointment', '\$125.50'),
+                          _buildServiceCard('Rapid Ambulance', 'Rs. 1999'),
                         ],
                       ),
                     ),
@@ -122,24 +121,7 @@ class _Checkout7WidgetState extends State<Checkout7Widget> {
                       padding: EdgeInsetsDirectional.fromSTEB(24, 4, 24, 0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Appointment',
-                            style: TextStyle(
-                              fontFamily: 'Arial',
-                              color: Color(0xFF57636C),
-                              fontSize: 16,
-                            ),
-                          ),
-                          Text(
-                            '\$125.50',
-                            style: TextStyle(
-                              fontFamily: 'Plus Jakarta Sans',
-                              color: Color(0xFF57636C),
-                              fontSize: 12,
-                            ),
-                          ),
-                        ],
+                        children: [],
                       ),
                     ),
                     const Padding(
@@ -156,7 +138,7 @@ class _Checkout7WidgetState extends State<Checkout7Widget> {
                             ),
                           ),
                           Text(
-                            '\$100',
+                            'Rs. 1999',
                             style: TextStyle(
                               fontFamily: 'Plus Jakarta Sans',
                               color: Color(0xFF57636C),
@@ -181,7 +163,7 @@ class _Checkout7WidgetState extends State<Checkout7Widget> {
                             ),
                           ),
                           Text(
-                            '\$225.50',
+                            'Rs. 1999',
                             style: TextStyle(
                               fontFamily: 'Roboto',
                               color: Color(0xFF14181B),
@@ -212,7 +194,7 @@ class _Checkout7WidgetState extends State<Checkout7Widget> {
                           );
                         },
                         child: const Text(
-                          'Pay (\$225.50)',
+                          'Pay (Rs. 1999)',
                           style: TextStyle(
                             fontFamily: 'Roboto',
                             color: Colors.white,

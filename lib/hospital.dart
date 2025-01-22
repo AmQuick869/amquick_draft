@@ -1,8 +1,6 @@
 import 'package:amquick_draft/option.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'need_doctor.dart';
-import 'hospital_service.dart';
 
 class WHospitalWidget extends StatefulWidget {
   const WHospitalWidget({super.key});
@@ -15,23 +13,13 @@ class _WHospitalWidgetState extends State<WHospitalWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final CollectionReference hospitalsCollection =
       FirebaseFirestore.instance.collection('hospitals');
-  final HospitalService _hospitalService = HospitalService();
 
   @override
   void initState() {
     super.initState();
-    _initializeHospitals();
   }
 
   // Initialize hospitals by fetching and updating them
-  Future<void> _initializeHospitals() async {
-    try {
-      // Fetch and update hospitals
-      await _hospitalService.fetchAndUpdateHospitals();
-    } catch (e) {
-      print("Error during hospital initialization: $e");
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,9 +118,9 @@ class _WHospitalWidgetState extends State<WHospitalWidget> {
                               hospitals[index].data() as Map<String, dynamic>;
                           final name =
                               hospitalData['name'] ?? 'Unknown Hospital';
-                          final GeoPoint loc =
-                              hospitalData['location'] ?? 'Unknown Location';
-                          final location = '${loc.latitude},${loc.longitude}';
+                          //final GeoPoint loc =
+                          hospitalData['location'] ?? 'Unknown Location';
+                          //final location = '${loc.latitude},${loc.longitude}';
                           final priceRange =
                               hospitalData['priceRange'] ?? 'Unknown Price';
                           final distance =
@@ -200,7 +188,7 @@ class _WHospitalWidgetState extends State<WHospitalWidget> {
                                                       const EdgeInsets.only(
                                                           top: 5),
                                                   child: Text(
-                                                    '\$$priceRange',
+                                                    'Rs. $priceRange',
                                                     style: TextStyle(
                                                       fontFamily: 'Inter',
                                                       fontSize: 16,

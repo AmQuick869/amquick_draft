@@ -79,16 +79,8 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-              child: Text(
-                '\$425.24',
-                style: TextStyle(
-                  fontFamily: 'Outfit',
-                  color: Color(0xFF14181B),
-                  fontSize: 57,
-                ),
-              ),
+            const SizedBox(
+              height: 50,
             ),
             const Padding(
               padding: EdgeInsetsDirectional.fromSTEB(24, 8, 24, 0),
@@ -99,73 +91,6 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                   fontFamily: 'Arial',
                   color: Color(0xFF57636C),
                   fontSize: 16,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(32, 20, 32, 0),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF1F4F8),
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: const Color(0xFFE0E3E7),
-                    width: 2,
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                        child: Image.asset(
-                          'assets/images/masterCard@2x.png',
-                          width: 40,
-                          height: 40,
-                          fit: BoxFit.fitWidth,
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
-                              child: Text(
-                                'Mastercard Ending in 4021',
-                                style: TextStyle(
-                                  fontFamily: 'Arial',
-                                  color: Color(0xFF14181B),
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
-                              child: Text(
-                                '\$425.24',
-                                style: TextStyle(
-                                  fontFamily: 'Arial',
-                                  color: Color(0xFF57636C),
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
               ),
             ),

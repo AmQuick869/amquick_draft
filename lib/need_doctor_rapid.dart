@@ -1,4 +1,4 @@
-import 'package:amquick_draft/payment.dart';
+import 'package:amquick_draft/Payment%20pages/payment_rapid.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -22,7 +22,8 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   // Define a constant image URL for all doctors
-  final String defaultImageUrl = 'https://img.freepik.com/premium-photo/doctor-having-good-news-his-patient_13339-193678.jpg?semt=ais_hybrid';
+  final String defaultImageUrl =
+      'https://img.freepik.com/premium-photo/doctor-having-good-news-his-patient_13339-193678.jpg?semt=ais_hybrid';
 
   @override
   void initState() {
@@ -141,7 +142,8 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
                           final price = doctor['price'];
 
                           return Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(25, 5, 25, 5),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(25, 5, 25, 5),
                             child: Container(
                               width: 100,
                               height: 270,
@@ -167,11 +169,13 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
                                 ),
                               ),
                               child: ElevatedButton(
-                                onPressed: (){
-                                   Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => Checkout7Widget()),
-                  );
+                                onPressed: () {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            Checkout7Widget()),
+                                  );
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.transparent,
@@ -186,7 +190,7 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(24),
                                       child: Image.network(
-                                        defaultImageUrl,  // Use the constant image URL
+                                        defaultImageUrl, // Use the constant image URL
                                         width: double.infinity,
                                         height: double.infinity,
                                         fit: BoxFit.cover,
@@ -198,12 +202,14 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
                                       child: Stack(
                                         children: [
                                           Padding(
-                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                15, 10, 15, 0),
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    15, 10, 15, 0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Container(
                                                   width: 70,
@@ -211,21 +217,27 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
                                                   decoration: BoxDecoration(
                                                     color: Colors.grey[50],
                                                     borderRadius:
-                                                        BorderRadius.circular(24),
+                                                        BorderRadius.circular(
+                                                            24),
                                                   ),
                                                   child: Row(
-                                                    mainAxisSize: MainAxisSize.max,
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment.center,
+                                                        MainAxisAlignment
+                                                            .center,
                                                     children: [
                                                       Icon(
                                                         Icons.star_rate_rounded,
-                                                        color: Color(0xFFEA8B18),
+                                                        color:
+                                                            Color(0xFFEA8B18),
                                                         size: 24,
                                                       ),
                                                       Padding(
-                                                        padding: EdgeInsetsDirectional
-                                                            .fromSTEB(5, 0, 0, 0),
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    5, 0, 0, 0),
                                                         child: Text(
                                                           rating.toString(),
                                                           style: TextStyle(
@@ -244,8 +256,9 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
                                             ),
                                           ),
                                           Padding(
-                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                10, 70, 0, 0),
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10, 70, 0, 0),
                                             child: Text(
                                               doctorName,
                                               style: TextStyle(
@@ -257,22 +270,25 @@ class _NeedDoctorWidgetState extends State<NeedDoctorWidget> {
                                             ),
                                           ),
                                           Align(
-                                            alignment: AlignmentDirectional(-1, 0),
+                                            alignment:
+                                                AlignmentDirectional(-1, 0),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional.fromSTEB(
-                                                  10, 30, 0, 0),
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(10, 30, 0, 0),
                                               child: RichText(
-                                                textScaler: MediaQuery.of(context)
-                                                    .textScaler,
+                                                textScaler:
+                                                    MediaQuery.of(context)
+                                                        .textScaler,
                                                 text: TextSpan(
                                                   children: [
                                                     TextSpan(
-                                                      text: '\$ $price/min',
+                                                      text: '  $price',
                                                       style: TextStyle(
                                                         fontFamily: 'Inter',
                                                         letterSpacing: 0.0,
                                                         color: Colors.black,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       ),
                                                     )
                                                   ],

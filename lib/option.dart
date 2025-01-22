@@ -1,6 +1,8 @@
-import 'package:amquick_draft/need_doctor.dart';
-import 'package:amquick_draft/payment.dart';
+import 'package:amquick_draft/Payment%20pages/payment%20copy%202.dart';
+import 'package:amquick_draft/Payment%20pages/payment_rapid.dart';
+import 'package:amquick_draft/need_doctor_rapid.dart';
 import 'package:flutter/material.dart';
+
 class Option extends StatefulWidget {
   const Option({super.key});
 
@@ -56,7 +58,8 @@ class _OptionState extends State<Option> {
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => Checkout7Widget()),
+                    MaterialPageRoute(
+                        builder: (context) => Checkout7WidgetCopyCopy()),
                   );
                 },
                 style: ElevatedButton.styleFrom(

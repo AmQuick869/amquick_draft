@@ -1,6 +1,7 @@
 import 'package:amquick_draft/hospital.dart';
 import 'package:amquick_draft/login.dart';
-import 'package:amquick_draft/need_doctor.dart';
+import 'package:amquick_draft/medical_report.dart';
+import 'package:amquick_draft/need_doctor_rapid.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'auth.dart';
@@ -73,9 +74,12 @@ class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
                     border: Border.all(
                         color: const Color.fromARGB(255, 188, 188, 188))),
                 child: ListTile(
-                  title: Text('Item 1'),
+                  title: Text('Medical Report Insights'),
                   onTap: () {
-                    // Handle the tap
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MedicalReportPage()));
                   },
                 ),
               ),
@@ -89,8 +93,10 @@ class _SelectAmbulanceWidgetState extends State<SelectAmbulanceWidget> {
                 child: ListTile(
                   title: Text('Book Consultation with Doctor'),
                   onTap: () {
-                    Navigator.pushReplacement(
-                        context, MaterialPageRoute(builder: (context)=>NeedDoctorWidget()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NeedDoctorWidget()));
                   },
                 ),
               ),
