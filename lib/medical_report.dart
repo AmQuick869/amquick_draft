@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
+import 'package:path_provider/path_provider.dart';
 
 class MedicalReportPage extends StatefulWidget {
   const MedicalReportPage({super.key});
@@ -11,7 +12,47 @@ class MedicalReportPage extends StatefulWidget {
 }
 
 class _MedicalReportPageState extends State<MedicalReportPage> {
+
+  
   File? _selectedPdf;
+
+  Future<void> uploadFile() async {
+  try {
+    // Pick file
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    if (result == null) return;
+
+    File file = File(result.files.single.path!);
+
+    // Create request
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse('http://localhost:5000/generate-report/'),
+    );
+
+    // Attach file
+    request.files.add(await http.MultipartFile.fromPath('file', file.path));
+
+    // Send request
+    var response = await request.send();
+
+    if (response.statusCode == 200) {
+      // Get the response as bytes
+      var bytes = await response.stream.toBytes();
+
+      // Save the PDF file
+      final directory = await getApplicationDocumentsDirectory();
+      File pdfFile = File('${directory.path}/Patient_Advice.pdf');
+      await pdfFile.writeAsBytes(bytes);
+
+      print('PDF saved at: ${pdfFile.path}');
+    } else {
+      print('Error: ${response.reasonPhrase}');
+    }
+  } catch (e) {
+    print('Exception: $e');
+  }
+}
 
   Future<void> _pickPdf() async {
     final result = await FilePicker.platform
@@ -64,7 +105,11 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
                 height: 40,
               ),
               ElevatedButton(
-                onPressed: _pickPdf,
+                onPressed: (){
+                  _pickPdf();
+                  uploadFile();
+                }
+                  ,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.teal,
                 ),
