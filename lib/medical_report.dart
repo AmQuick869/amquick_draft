@@ -34,7 +34,7 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
       // Create request
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('https://fastapirender-6.onrender.com/generate-report'),
+        Uri.parse('https://fastapirender-6.onrender.com/generate-report/'),
       );
       print('Request created.');
 
@@ -52,9 +52,7 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
         final data = jsonDecode(responseBody);
         insights = data["insights"];
 
-        setState(() {
-
-        });
+        setState(() {});
       } else {
         print('Error: ${response.reasonPhrase}');
       }
@@ -143,7 +141,7 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
                     Text(
                       'Selected File:',
                       style:
-                      TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 8),
                     Text(
@@ -154,23 +152,28 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
                     Text(
                       'Insights:',
                       style:
-                      TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 8),
                     Container(
-                      height: 200,
+                      height: MediaQuery.of(context).size.height / 2,
                       padding: EdgeInsets.all(15),
                       margin: EdgeInsets.all(15),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.teal),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Text(
-                        insights == "" ?
-                        'Insights will be displayed here after processing the report.' : insights,
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: const Color.fromARGB(255, 52, 52, 52)),
+                      child: SingleChildScrollView(
+                        child: Column(children: [
+                          Text(
+                            insights == ""
+                                ? 'Insights will be displayed here after processing the report.'
+                                : insights,
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: const Color.fromARGB(255, 52, 52, 52)),
+                          ),
+                        ]),
                       ),
                     ),
                   ],
