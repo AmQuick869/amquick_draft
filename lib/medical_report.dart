@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
@@ -13,6 +15,8 @@ class MedicalReportPage extends StatefulWidget {
 
 class _MedicalReportPageState extends State<MedicalReportPage> {
   File? _selectedPdf;
+
+  String insights = "";
 
   Future<void> uploadFile() async {
     try {
@@ -30,7 +34,7 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
       // Create request
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('https://fastapirender-6.onrender.com/generate-report/'),
+        Uri.parse('https://fastapirender-6.onrender.com/generate-report'),
       );
       print('Request created.');
 
@@ -45,7 +49,12 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
       if (response.statusCode == 200) {
         // Get the response as bytes
         var responseBody = await response.stream.bytesToString();
-        print(responseBody);
+        final data = jsonDecode(responseBody);
+        insights = data["insights"];
+
+        setState(() {
+
+        });
       } else {
         print('Error: ${response.reasonPhrase}');
       }
@@ -134,7 +143,7 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
                     Text(
                       'Selected File:',
                       style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 8),
                     Text(
@@ -145,7 +154,7 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
                     Text(
                       'Insights:',
                       style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 8),
                     Container(
@@ -157,7 +166,8 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        'Insights will be displayed here after processing the report.',
+                        insights == "" ?
+                        'Insights will be displayed here after processing the report.' : insights,
                         style: TextStyle(
                             fontSize: 14,
                             color: const Color.fromARGB(255, 52, 52, 52)),
