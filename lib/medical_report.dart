@@ -8,7 +8,6 @@ class MedicalReportPage extends StatefulWidget {
   const MedicalReportPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _MedicalReportPageState createState() => _MedicalReportPageState();
 }
 
@@ -18,26 +17,35 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
   Future<void> uploadFile() async {
     try {
       // Pick file
+      print('Picking file...');
       FilePickerResult? result = await FilePicker.platform.pickFiles();
-      if (result == null) return;
+      if (result == null) {
+        print('No file selected.');
+        return;
+      }
 
       File file = File(result.files.single.path!);
+      print('File selected: ${file.path}');
 
       // Create request
       var request = http.MultipartRequest(
         'POST',
         Uri.parse('https://fastapirender-5.onrender.com/generate-report'),
       );
+      print('Request created.');
 
       // Attach file
       request.files.add(await http.MultipartFile.fromPath('file', file.path));
+      print('File attached to the request.');
 
       // Send request
       var response = await request.send();
+      print('Request sent. Response code: ${response.statusCode}');
 
       if (response.statusCode == 200) {
         // Get the response as bytes
         var bytes = await response.stream.toBytes();
+        print('Response received. Saving PDF...');
 
         // Save the PDF file
         final directory = await getApplicationDocumentsDirectory();
@@ -61,6 +69,9 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
       setState(() {
         _selectedPdf = File(result.files.single.path!);
       });
+      print('PDF file selected: ${_selectedPdf!.path}');
+    } else {
+      print('No PDF file selected.');
     }
   }
 
@@ -105,9 +116,14 @@ class _MedicalReportPageState extends State<MedicalReportPage> {
               ),
               ElevatedButton(
                 onPressed: () async {
+                  print('Button pressed, picking PDF...');
                   await _pickPdf();
-
-                  uploadFile();
+                  if (_selectedPdf != null) {
+                    print('Selected PDF: ${_selectedPdf!.path}');
+                    await uploadFile();
+                  } else {
+                    print('No PDF selected, cannot upload.');
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.teal,
